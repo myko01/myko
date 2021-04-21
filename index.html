@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.82.0">
+  <title>Album example · Bootstrap v5.0</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    #userBox {
+      display: none;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Add some information about the album below, the author, or any other background
+              context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off
+              to some social networking sites or contact information.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong class="ml-5 d-flex">GTM Stuff</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+
+        <div class="col-lg-6 col-md-8 mx-auto" id="userBox">
+          <h1 class="fw-light">Hello, <span id="userName"></span></h1>
+          <p class="lead text-muted">I am happy to preset for your our test page!</p>
+          <p class="lead text-muted">Let's check our GTM stuff togeter!</p>
+          <p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Launch demo modal
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Launch demo modal
+            </button>
+          </p>
+        </div>
+
+        <div class="row g-3" id="userSet">
+          <h3 class="fw-light col-12">Hello, set up your User Name</h3>
+          <div class="col-md-6 offset-md-3">
+            <label for="userNameInput" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="userNameInput">
+          </div>
+          <div class="col-12">
+            <button type="button" id="userNameInputSubmit" class="btn btn-primary">Set Up</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row">
+          <div class="col col-12 text-center">
+            <h2>GTM Test page</h2>
+            <p>
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+            <p>
+              This is a wider card with supporting text below as a natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    </div>
+  </footer>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://myko01.github.io/iframe/" width="100%" height="400px"
+            style="width: 100%; height: 400px; min-height: 400px;" frameborder="0"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    const buttonSubmit = document.getElementById('userNameInputSubmit');
+    const inputUserName = document.getElementById('userNameInput');
+    const userNameTargetSpan = document.getElementById('userName');
+    let userNameValue = window.localStorage.getItem('user');
+    const error = {
+      status: false,
+      erorrText: 'Fill User Name field, please'
+    }
+
+    if (userNameValue) {
+      userNameTargetSpan.textContent = userNameValue;
+      hideUserSetBlock();
+      showUserBlock();
+    }
+
+    buttonSubmit.addEventListener('click', () => {
+      let userNameValue = inputUserName.value;
+      if (userNameValue) {
+        userNameTargetSpan.textContent = userNameValue;
+        window.localStorage.setItem('user', userNameValue);
+        hideUserSetBlock();
+        showUserBlock();
+      } else {
+        alert(error.erorrText);
+      }
+    }, false);
+
+    function hideUserSetBlock() {
+      const userBlock = document.getElementById('userSet');
+      userBlock.classList.add('d-none');
+    }
+
+    function showUserBlock() {
+      const userBlock = document.getElementById('userBox');
+      userBlock.classList.add('d-block');
+    }
+
+
+  </script>
+
+</body>
+
+</html>
