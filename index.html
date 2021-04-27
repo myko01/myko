@@ -34,19 +34,22 @@
   </style>
 
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-T7RS86H');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-T7RS86H');</script>
   <!-- End Google Tag Manager -->
 
 </head>
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7RS86H"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7RS86H" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <header>
     <div class="collapse bg-dark" id="navbarHeader">
@@ -84,7 +87,8 @@
           <p class="lead text-muted">Let's play our games!</p>
           <p class="lead text-muted">Make deposit and Go, Jonny!</p>
           <p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" id="depositOpenButton" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
               Deposit
             </button>
           </p>
@@ -138,8 +142,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <iframe src="https://triomics.com" width="100%" height="450px" id="depositForm"
-            style="width: 100%; height: 450px; min-height: 450px;" frameborder="0"></iframe>
+          <iframe width="100%" height="450px" id="depositForm" style="width: 100%; height: 450px; min-height: 450px;"
+            frameborder="0"></iframe>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -148,48 +152,15 @@
     </div>
   </div>
 
-
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/Login.js"></script>
 
   <script>
 
-    const buttonSubmit = document.getElementById('userNameInputSubmit');
-    const inputUserName = document.getElementById('userNameInput');
-    const userNameTargetSpan = document.getElementById('userName');
-    let userNameValue = window.localStorage.getItem('user');
-    const error = {
-      status: false,
-      erorrText: 'Fill User Name field, please'
-    }
-
-    if (userNameValue) {
-      userNameTargetSpan.textContent = userNameValue;
-      hideUserSetBlock();
-      showUserBlock();
-    }
-
-    buttonSubmit.addEventListener('click', () => {
-      let userNameValue = inputUserName.value;
-      if (userNameValue) {
-        userNameTargetSpan.textContent = userNameValue;
-        window.localStorage.setItem('user', userNameValue);
-        hideUserSetBlock();
-        showUserBlock();
-      } else {
-        alert(error.erorrText);
-      }
-    }, false);
-
-    function hideUserSetBlock() {
-      const userBlock = document.getElementById('userSet');
-      userBlock.classList.add('d-none');
-    }
-
-    function showUserBlock() {
-      const userBlock = document.getElementById('userBox');
-      userBlock.classList.add('d-block');
-    }
-
+    var depositModal = document.getElementById('exampleModal')
+    depositModal.addEventListener('show.bs.modal', function (event) {
+      document.getElementById('depositForm').src = "https://triomics.com";
+    })
 
   </script>
 
