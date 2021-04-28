@@ -7,6 +7,7 @@
     const buttonSubmit = document.getElementById('userNameInputSubmit');
     const inputUserName = document.getElementById('userNameInput');
     const userNameTargetSpan = document.getElementById('userName');
+    const dataLayer = window.dataLayer || (window.dataLayer = []);
 
     const error = {
         status: false,
@@ -26,6 +27,9 @@
             window.localStorage.setItem('user', userNameValue);
             hideUserSetBlock();
             showUserBlock();
+            dataLayer.push({
+                'event': 'Parent_Site_Logined'
+            });
         } else {
             alert(error.erorrText);
         }
