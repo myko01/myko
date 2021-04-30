@@ -9,7 +9,6 @@
   <meta name="generator" content="Hugo 0.82.0">
   <title>Parent Site</title>
 
-
   <!-- Bootstrap core CSS -->
   <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,6 +28,10 @@
     }
 
     #userBox {
+      display: none;
+    }
+
+    #logoutBtn {
       display: none;
     }
   </style>
@@ -69,25 +72,22 @@
         <a href="#" class="navbar-brand d-flex align-items-center">
           <strong class="ml-5 d-flex">Parent</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
-          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="btn btn-outline-warning" id="logoutBtn" type="button">
+          Logout
         </button>
       </div>
     </div>
   </header>
 
   <main>
-
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
-
         <div class="col-lg-6 col-md-8 mx-auto" id="userBox">
           <h1 class="fw-light">Hello, <span id="userName"></span></h1>
           <p class="lead text-muted">Let's play our games!</p>
           <p class="lead text-muted">Make deposit and Go, Jonny!</p>
           <p>
-            <button type="button" id="depositOpenButton" class="btn btn-primary" data-bs-toggle="modal"
+            <button type="button" id="depositOpenButton" class="btn btn-success btn-lg" data-bs-toggle="modal"
               data-bs-target="#exampleModal">
               Deposit
             </button>
@@ -101,7 +101,7 @@
             <input type="text" class="form-control" id="userNameInput">
           </div>
           <div class="col-12">
-            <button type="button" id="userNameInputSubmit" class="btn btn-primary">Login</button>
+            <button type="button" id="userNameInputSubmit" class="btn btn-success">Login</button>
           </div>
         </div>
       </div>

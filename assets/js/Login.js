@@ -5,6 +5,7 @@
     let userNameValue = window.localStorage.getItem('user');
 
     const buttonSubmit = document.getElementById('userNameInputSubmit');
+    const buttonLogout = document.getElementById('logoutBtn');
     const inputUserName = document.getElementById('userNameInput');
     const userNameTargetSpan = document.getElementById('userName');
     const dataLayer = window.dataLayer || (window.dataLayer = []);
@@ -16,7 +17,7 @@
 
     if (userNameValue) {
         userNameTargetSpan.textContent = userNameValue;
-        hideUserSetBlock();
+        hideLogin();
         showUserBlock();
     }
 
@@ -24,8 +25,9 @@
         let userNameValue = inputUserName.value;
         if (userNameValue) {
             userNameTargetSpan.textContent = userNameValue;
+            inputUserName.value = '';
             window.localStorage.setItem('user', userNameValue);
-            hideUserSetBlock();
+            hideLogin();
             showUserBlock();
             dataLayer.push({
                 'event': 'Parent_Site_Logined'
@@ -35,13 +37,37 @@
         }
     }, false);
 
-    function hideUserSetBlock() {
+    buttonLogout.addEventListener('click', () => {
+        window.localStorage.removeItem('user');
+        hideUserBlock();
+        showLogin();
+        dataLayer.push({
+            'event': 'Parent_Site_Unlogined'
+        });
+
+    }, false);
+
+    function hideLogin() {
         const userBlock = document.getElementById('userSet');
         userBlock.classList.add('d-none');
     }
 
+    function showLogin() {
+        const userBlock = document.getElementById('userSet');
+        userBlock.classList.remove('d-none');
+    }
+
     function showUserBlock() {
         const userBlock = document.getElementById('userBox');
+        const userButton = document.getElementById('logoutBtn');
         userBlock.classList.add('d-block');
+        userButton.classList.add('d-block');
+    }
+
+    function hideUserBlock() {
+        const userBlock = document.getElementById('userBox');
+        const userButton = document.getElementById('logoutBtn');
+        userBlock.classList.remove('d-block');
+        userButton.classList.remove('d-block');
     }
 }());
