@@ -32,6 +32,7 @@
             dataLayer.push({
                 'event': 'Parent_Site_Logined'
             });
+            console.log('Login');
         } else {
             alert(error.erorrText);
         }
@@ -45,6 +46,7 @@
             'event': 'Parent_Site_Unlogined'
         });
 
+        console.log('Logout');
     }, false);
 
     function hideLogin() {
