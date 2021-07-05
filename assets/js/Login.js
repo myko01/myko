@@ -8,7 +8,7 @@
     const buttonLogout = document.getElementById('logoutBtn');
     const inputUserName = document.getElementById('userNameInput');
     const userNameTargetSpan = document.getElementById('userName');
-    const dataLayer = window.dataLayer || (window.dataLayer = []);
+    // const dataLayer = window.dataLayer || (window.dataLayer = []);
 
     const error = {
         status: false,
@@ -29,9 +29,9 @@
             window.localStorage.setItem('user', userNameValue);
             hideLogin();
             showUserBlock();
-            dataLayer.push({
-                'event': 'Parent_Site_Logined'
-            });
+            // dataLayer.push({
+            //     'event': 'Parent_Site_Logined'
+            // });
             console.log('Login');
         } else {
             alert(error.erorrText);
@@ -42,9 +42,9 @@
         window.localStorage.removeItem('user');
         hideUserBlock();
         showLogin();
-        dataLayer.push({
-            'event': 'Parent_Site_Unlogined'
-        });
+        // dataLayer.push({
+        //     'event': 'Parent_Site_Unlogined'
+        // });
 
         console.log('Logout');
     }, false);
